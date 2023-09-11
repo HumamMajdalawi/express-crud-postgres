@@ -28,7 +28,10 @@ describe("PostAssetController", () => {
     await PostAssetController(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ message: "No Asset uploaded." });
+    expect(res.json).toHaveBeenCalledWith({
+      success: false,
+      message: "No Asset uploaded.",
+    });
   });
 
   it("should upload an asset and return 201", async () => {

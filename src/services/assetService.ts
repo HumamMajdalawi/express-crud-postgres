@@ -19,4 +19,10 @@ export class AssetService {
     });
     return this.AssetRepository.save(user);
   }
+
+  async getAsset(assetId: string): Promise<Asset | null> {
+    return this.AssetRepository.findOneBy({
+      uuidName: assetId,
+    });
+  }
 }
