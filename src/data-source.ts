@@ -1,10 +1,12 @@
+import "reflect-metadata";
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
+import { Asset } from "./entities/asset";
 dotenv.config();
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  entities: ["dist/src/entities/**/*.js"],
+  entities: [Asset],
   synchronize: true,
   logging: true,
   host: process.env.DB_HOST,

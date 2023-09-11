@@ -6,8 +6,11 @@ export class Asset {
   id: number;
 
   @Column()
-  name: string;
+  originalName: string;
 
   @Column()
-  type: string;
+  uuidName: string;
+
+  @Column()
+  mimetype: string;
 }

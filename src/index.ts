@@ -1,9 +1,10 @@
 "use strict";
+import "reflect-metadata";
 import express from "express";
 import cors from "cors";
-import { AppDataSource } from "./data-source";
 import dotenv from "dotenv";
 import router from "./router";
+import { AppDataSource } from "./data-source";
 dotenv.config();
 
 const PORT = Number(process.env.PORT) || 4000;
