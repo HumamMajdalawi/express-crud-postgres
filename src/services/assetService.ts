@@ -25,4 +25,11 @@ export class AssetService {
       uuidName: assetId,
     });
   }
+
+  async getAssets(page: number, limit: number): Promise<Asset[] | null> {
+    return this.AssetRepository.createQueryBuilder("Asset")
+      .skip(page * limit)
+      .take(limit)
+      .getMany();
+  }
 }
