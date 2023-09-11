@@ -1,9 +1,19 @@
 import { Request, Response } from "express";
 import path from "path";
 import { AssetService } from "../services/assetService";
+import { checkIfValidUUID } from "../utils";
 
 const GetAssetController = async (req: Request, res: Response) => {
-  const assetId = req.query.uuid;
+  const assetId = req.params.uuid;
+
+  const assetIdName = assetId?.toString().split(".")[0] as string;
+  // validate assetId format
+  if (!checkIfValidUUID(assetIdName)) {
+    return res.status(422).json({
+      success: false,
+      message: "Invalid UUID",
+    });
+  }
 
   const assetService = new AssetService();
   const asset = await assetService.getAsset(assetId as string);
