@@ -70,4 +70,28 @@ describe("AssetService", () => {
     expect(result?.uuidName).toBe(assetData.uuidName);
     expect(result?.originalName).toBe(assetData.originalName);
   });
+
+  it("Should Get Assets", async () => {
+    // Mock QueryBuilder functions
+    const mockRepository = {
+      createQueryBuilder: jest.fn().mockImplementation(() => ({
+        skip: jest.fn().mockImplementation(() => ({
+          take: () => ({ getMany: jest.fn() }),
+        })),
+      })),
+    };
+
+    // Mock QueryBuilder Object
+    require("../data-source").AppDataSource.getRepository.mockReturnValue(
+      mockRepository
+    );
+
+    // Create an instance of AssetService
+    const assetService = new AssetService();
+
+    // Call getAssets method
+    const result = await assetService.getAssets(0, 10);
+    // QueryBuilder has been called
+    expect(mockRepository.createQueryBuilder).toHaveBeenCalledWith("Asset");
+  });
 });
