@@ -21,8 +21,11 @@ app.use(cors());
 app.use(express.static("upload"));
 app.use("/", router);
 
-app.get("/", (req, res) => {
-  res.json({ info: "App is running!" });
+// Handle invalid routes or API endpoints
+app.all("*", (req, res) => {
+  res
+    .status(404)
+    .json({ success: false, message: "Invalid API endpoint or route" });
 });
 
 app.listen(PORT, HOST, () => {
