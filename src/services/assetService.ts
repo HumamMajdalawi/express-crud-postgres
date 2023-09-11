@@ -32,4 +32,11 @@ export class AssetService {
       .take(limit)
       .getMany();
   }
+
+  async deleteAsset(assetId: string): Promise<void> {
+    await this.AssetRepository.createQueryBuilder("Asset")
+      .delete()
+      .where("uuidName = :uuidName", { uuidName: assetId })
+      .execute();
+  }
 }

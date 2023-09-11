@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import path from "path";
 import { AssetService } from "../services/assetService";
 import { checkIfValidUUID } from "../utils";
 
-const GetAssetController = async (req: Request, res: Response) => {
+const DeleteAssetController = async (req: Request, res: Response) => {
   try {
     const assetId = req.params.uuid;
     const assetIdName = assetId?.toString().split(".")[0] as string;
@@ -23,16 +22,16 @@ const GetAssetController = async (req: Request, res: Response) => {
         success: false,
         message: "Asset Is Not Found",
       });
+    } else {
+      await assetService.deleteAsset(assetId);
     }
 
-    const assetURL = path.join(__dirname, "upload") + "/" + asset.uuidName;
     return res.status(200).json({
       success: true,
       message: "success",
-      assetURL,
-      asset: asset,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
       message: "Server Error",
@@ -40,4 +39,4 @@ const GetAssetController = async (req: Request, res: Response) => {
   }
 };
 
-export default GetAssetController;
+export default DeleteAssetController;

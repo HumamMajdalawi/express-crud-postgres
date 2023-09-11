@@ -94,4 +94,28 @@ describe("AssetService", () => {
     // QueryBuilder has been called
     expect(mockRepository.createQueryBuilder).toHaveBeenCalledWith("Asset");
   });
+
+  it("Should Delete Asset", async () => {
+    // Mock QueryBuilder functions
+    const mockRepository = {
+      createQueryBuilder: jest.fn().mockImplementation(() => ({
+        delete: jest.fn().mockImplementation(() => ({
+          where: () => ({ execute: jest.fn() }),
+        })),
+      })),
+    };
+
+    // Mock QueryBuilder Object
+    require("../data-source").AppDataSource.getRepository.mockReturnValue(
+      mockRepository
+    );
+
+    // Create an instance of AssetService
+    const assetService = new AssetService();
+
+    // Call getAssets method
+    const result = await assetService.deleteAsset("testUUID");
+    // QueryBuilder has been called
+    expect(mockRepository.createQueryBuilder).toHaveBeenCalledWith("Asset");
+  });
 });
