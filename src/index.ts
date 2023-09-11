@@ -18,6 +18,7 @@ AppDataSource.initialize()
 
 const app = express();
 app.use(cors());
+app.use(express.static("upload"));
 app.use("/", router);
 
 app.get("/", (req, res) => {
