@@ -63,7 +63,7 @@ describe("DeleteAssetController", () => {
     mockGetAsset.mockReturnValue(asset);
     await DeleteAssetController(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledWith(204);
     expect(res.json).toHaveBeenCalledWith({
       success: true,
       message: "success",
