@@ -2,6 +2,14 @@
 
 The project needs a Node.js server with Express.js for APIs, tested using Jest, and a PostgreSQL database managed via Docker. Include APIs represent a CRUD opertions for an entity `Asset`.
 
+# Used Packages
+
+This project utilizes several essential packages to enhance its functionality. Below is a list of the key packages used:
+
+- TypeORM: TypeORM is an Object-Relational Mapping (ORM) library for TypeScript and JavaScript, which simplifies database interactions and management. It provides a convenient way to work with databases using object-oriented programming principles.
+
+- Multer: Multer is a middleware for handling multipart/form-data, which is commonly used for file uploads. In this project, Multer plays a crucial role in processing and storing media files, making it a seamless choice for file management.
+
 # API Endpoints
 
 1. **Endpoint: `POST /assets`**
@@ -312,3 +320,9 @@ DELETE /assets/f47ac10b-58cc-4372-a567-0e02b2c3d479.jpeg
 - `npm run test:unit`: run all unit tests
 - `npm run test:integration`: run all integration tests
 - `npm run start`: run the server
+
+# Enhancements
+
+- Implement authentication and authorization mechanisms.
+- Restrict asset types to accept only images and videos.
+- Expand the coverage of integration tests.
