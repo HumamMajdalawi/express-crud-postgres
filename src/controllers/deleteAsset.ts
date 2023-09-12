@@ -26,7 +26,7 @@ const DeleteAssetController = async (req: Request, res: Response) => {
       await assetService.deleteAsset(assetId);
     }
 
-    return res.status(200).json({
+    return res.status(204).json({
       success: true,
       message: "success",
     });
